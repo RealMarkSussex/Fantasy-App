@@ -7,13 +7,10 @@ const PlayerList = () => {
   const [players, setPlayers] = useState(new Array<Player>());
   const [position, setPosition] = useState("Goalkeeper");
   const [price, setPrice] = useState(0.0);
-  // useEffect(() => {
-  //   assignPlayers(setPlayers);
-  // }, []);
 
   return (
     <Container>
-      <div>
+      <h1>Enter position and price to get the top 5 players with that price and position!</h1>
         <Form
           onSubmit={(event) => handleSubmit(event, setPlayers, position, price)}
         >
@@ -40,13 +37,12 @@ const PlayerList = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Get da BEST Playa
+            Get da BEST Playas
           </Button>
         </Form>
         {players.map((x) => (
           <PlayerComponent player={x} key={x.id.toString()} />
         ))}
-      </div>
     </Container>
   );
 };
@@ -96,12 +92,5 @@ async function getPlayers(
   console.log(players);
   return players;
 }
-
-// const assignPlayers = async (
-//   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>
-// ) => {
-//   let players = await getPlayers();
-//   setPlayers(players);
-// };
 
 export default PlayerList;
