@@ -3,7 +3,6 @@ import aiohttp
 import asyncio
 import flask
 from flask import request, jsonify
-import json
 from flask_cors import CORS
 
 
