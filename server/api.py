@@ -1,6 +1,12 @@
 from fpl import FPL
 import aiohttp
 import asyncio
+import flask
+from flask import request, jsonify
+import json
+
+app = flask.Flask(__name__)
+app.config["DEBUG"] = True
 
 
 def position_converter(position):
@@ -28,11 +34,24 @@ async def get_player(position, price):
         if position_converter(player.element_type) == position and player.now_cost <= price:
             matchingPlayers.append(player)
     await session.close()
-    
+
     return matchingPlayers
 
-players = asyncio.run(get_player("Defender", 57))
-players.sort(key=player_is_better, reverse=True)
-print(dir(players[0]))
-for player in players[:5]:
-    print(player)
+
+def player_to_json(player):
+    return {'name': player.first_name + player.second_name}
+
+
+@app.route('/top5Players', methods=['GET'])
+def top_five_players():
+    position = request.args.get('positon')
+    price = float(request.args.get('price')) * 10
+    players = asyncio.run(get_player(position, price))
+    players.sort(key=player_is_better, reverse=True)
+    jsonPlayers = []
+    for player in players[:5]:
+        jsonPlayers.append(player_to_json(player))
+    return jsonify(jsonPlayers)
+
+
+app.run()
