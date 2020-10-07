@@ -23,7 +23,7 @@ def position_converter(position):
 
 
 def player_is_better(player):
-    return player.points_per_game
+    return float(player.points_per_game) + float(player.total_points)
 
 
 async def get_player(position, price):
@@ -42,7 +42,7 @@ async def get_player(position, price):
 
 
 def player_to_json(player):
-    return {'name': player.first_name + player.second_name, 'form': player.value_form, 'pointsPerGame': player.points_per_game, "id": player.id}
+    return {'name': player.web_name, 'totalPoints': player.total_points, 'pointsPerGame': player.points_per_game, "id": player.id}
 
 
 @app.route('/top5Players', methods=['GET'])

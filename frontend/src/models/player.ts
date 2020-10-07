@@ -1,12 +1,17 @@
 class Player {
   name: String;
-  form: string;
+  totalPoints: string;
   pointsPerGame: string;
   id: Int32Array;
 
-  constructor(name: string, form: string, pointsPerGame: string, id: Int32Array) {
+  constructor(
+    name: string,
+    totalPoints: string,
+    pointsPerGame: string,
+    id: Int32Array
+  ) {
     this.name = name;
-    this.form = form;
+    this.totalPoints = totalPoints;
     this.pointsPerGame = pointsPerGame;
     this.id = id;
   }
@@ -14,8 +19,8 @@ class Player {
   public toString = (): string => {
     return (
       this.name +
-      ", form: " +
-      this.form +
+      ", total points: " +
+      this.totalPoints +
       " , points per game: " +
       this.pointsPerGame
     );
