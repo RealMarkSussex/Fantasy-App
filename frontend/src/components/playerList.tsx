@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Player from "../models/player";
-import PlayerComponent from "./player";
+import PlayerComponent from "./playerDetail";
 
 const PlayerList = () => {
   const [players, setPlayers] = useState(new Array<Player>());
@@ -10,7 +10,7 @@ const PlayerList = () => {
   }, []);
 
     return (<div>
-        {players.map((x) => <PlayerComponent player={x} />)}
+        {players.map((x) => <PlayerComponent player={x} key={x.id.toString()} />)}
     </div>);
 };
 
@@ -22,12 +22,13 @@ async function getPlayers(): Promise<Array<Player>> {
 
   let players = new Array<Player>();
   playersJson.forEach(
-    (playerJson: { name: string; form: string; pointsPerGame: string }) => {
+    (playerJson: { name: string; form: string; pointsPerGame: string, id: Int32Array }) => {
       players.push(
-        new Player(playerJson.name, playerJson.form, playerJson.pointsPerGame)
+        new Player(playerJson.name, playerJson.form, playerJson.pointsPerGame, playerJson.id)
       );
     }
   );
+  console.log(players)
   return players;
 }
 
