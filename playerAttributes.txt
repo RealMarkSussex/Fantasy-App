@@ -1,0 +1,10 @@
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__'
+, '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__'
+, '_session', 'assists', 'bonus', 'bps', 'chance_of_playing_next_round', 'chance_of_playing_this_round', 'clean_sheets', 'code', 'corners_and_indirect_freekicks_order'
+, 'corners_and_indirect_freekicks_text', 'cost_change_event', 'cost_change_event_fall', 'cost_change_start', 'cost_change_start_fall', 'creativity', 'creativity_rank'
+, 'creativity_rank_type', 'direct_freekicks_order', 'direct_freekicks_text', 'dreamteam_count', 'element_type', 'ep_next', 'ep_this', 'event_points', 'first_name', 'form'
+, 'games_played', 'goals_conceded', 'goals_scored', 'ict_index', 'ict_index_rank', 'ict_index_rank_type', 'id', 'in_dreamteam', 'influence', 'influence_rank'
+, 'influence_rank_type', 'minutes', 'news', 'news_added', 'now_cost', 'own_goals', 'penalties_missed', 'penalties_order', 
+'penalties_saved', 'penalties_text', 'photo', 'points_per_game', 'pp90', 'red_cards', 'saves', 'second_name', 'selected_by_percent', 'special', 'squad_number', 'status'
+, 'team', 'team_code', 'threat', 'threat_rank', 'threat_rank_type', 'total_points', 'transfers_in', 'transfers_in_event', 'transfers_out', 'transfers_out_event', 'value_form'
+, 'value_season', 'vapm', 'web_name', 'yellow_cards']
