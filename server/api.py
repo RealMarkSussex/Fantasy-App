@@ -39,7 +39,7 @@ async def get_player(position, price):
 
 
 def player_to_json(player):
-    return {'name': player.first_name + player.second_name}
+    return {'name': player.first_name + player.second_name, 'form': player.value_form, 'pointsPerGame': player.points_per_game}
 
 
 @app.route('/top5Players', methods=['GET'])
