@@ -4,9 +4,12 @@ import asyncio
 import flask
 from flask import request, jsonify
 import json
+from flask_cors import CORS
+
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+CORS(app)
 
 
 def position_converter(position):
