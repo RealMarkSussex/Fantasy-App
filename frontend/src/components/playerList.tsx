@@ -10,39 +10,43 @@ const PlayerList = () => {
 
   return (
     <Container>
-      <h1>Enter position and price to get the top 5 players with that price and position!</h1>
-        <Form
-          onSubmit={(event) => handleSubmit(event, setPlayers, position, price)}
-        >
-          <Form.Group controlId="formPosition">
-            <Form.Label>Position</Form.Label>
-            <Form.Control
-              as="select"
-              defaultValue="choose..."
-              onChange={(event) => setPosition(event.target.value)}
-            >
-              <option>Goalkeeper</option>
-              <option>Defender</option>
-              <option>Midfielder</option>
-              <option>Forward</option>
-            </Form.Control>
-          </Form.Group>
+      <h1>
+        Enter position and price to get the top 5 players with that price and
+        position!
+      </h1>
+      <Form
+        onSubmit={(event) => handleSubmit(event, setPlayers, position, price)}
+      >
+        <Form.Group controlId="formPosition">
+          <Form.Label>Position</Form.Label>
+          <Form.Control
+            as="select"
+            defaultValue="choose..."
+            onChange={(event) => setPosition(event.target.value)}
+          >
+            <option>Goalkeeper</option>
+            <option>Defender</option>
+            <option>Midfielder</option>
+            <option>Forward</option>
+          </Form.Control>
+        </Form.Group>
 
-          <Form.Group controlId="formPrice">
-            <Form.Label>Price</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Type in player price"
-              onChange={(event) => setPrice(parseFloat(event.target.value))}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Get da BEST Playas
-          </Button>
-        </Form>
-        {players.map((x) => (
-          <PlayerComponent player={x} key={x.id.toString()} />
-        ))}
+        <Form.Group controlId="formPrice">
+          <Form.Label>Price</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Type in player price"
+            onChange={(event) => setPrice(parseFloat(event.target.value))}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Get da BEST Playas
+        </Button>
+      </Form>
+      {players.map((x) => (
+        <PlayerComponent player={x} key={x.id.toString()} />
+      ))}
     </Container>
   );
 };
@@ -54,7 +58,6 @@ async function handleSubmit(
   price: number
 ) {
   event.preventDefault();
-  console.log(price + position);
   let players = await getPlayers(position, price);
   setPlayers(players);
 }
