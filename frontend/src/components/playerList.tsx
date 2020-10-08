@@ -67,7 +67,7 @@ async function getPlayers(
   price: number
 ): Promise<Array<Player>> {
   let response = await fetch(
-    "http://127.0.0.1:5000/top5Players?positon=" +
+    "http://127.0.0.1:5000/top5Players?position=" +
       position +
       "&price=" +
       price.toString()

@@ -46,7 +46,7 @@ def player_to_json(player):
 
 @app.route('/top5Players', methods=['GET'])
 def top_five_players():
-    position = request.args.get('positon')
+    position = request.args.get('position')
     price = float(request.args.get('price')) * 10
     players = asyncio.run(get_player(position, price))
     players.sort(key=player_is_better, reverse=True)
