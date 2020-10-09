@@ -4,56 +4,29 @@ import asyncio
 import flask
 from flask import request, jsonify
 from flask_cors import CORS
+from project.repositories.player_repo import get_top_five_players
 
+print('__file__={0:<35} | __name__={1:<20} | __package__={2:<20}'.format(
+    __file__, __name__, str(__package__)))
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
 
 
-def position_converter(position):
-    position_map = {
-        1: "Goalkeeper",
-        2: "Defender",
-        3: "Midfielder",
-        4: "Forward"
-    }
-    return position_map[position]
-
-
-def player_is_better(player):
-    return float(player.points_per_game) + float(player.total_points)
-
-
-async def get_player(position, price):
-    session = aiohttp.ClientSession()
-    fpl = FPL(session)
-
-    players = await fpl.get_players()
-    matchingPlayers = []
-
-    for player in players:
-        if position_converter(player.element_type) == position and player.now_cost <= price:
-            matchingPlayers.append(player)
-    await session.close()
-
-    return matchingPlayers
-
-
-def player_to_json(player):
-    return {'name': player.web_name, 'totalPoints': player.total_points, 'pointsPerGame': player.points_per_game, "id": player.id}
-
-
 @app.route('/top5Players', methods=['GET'])
 def top_five_players():
+    return asyncio.run(run_top_five_players())
+
+
+async def run_top_five_players():
+    session = aiohttp.ClientSession()
+    fpl = FPL(session)
     position = request.args.get('positon')
     price = float(request.args.get('price')) * 10
-    players = asyncio.run(get_player(position, price))
-    players.sort(key=player_is_better, reverse=True)
-    jsonPlayers = []
-    for player in players[:5]:
-        jsonPlayers.append(player_to_json(player))
-    return jsonify(jsonPlayers)
+    top_five_players = await get_top_five_players(position, price, fpl)
+    await session.close()
+    return jsonify(top_five_players)
 
 
 app.run()
