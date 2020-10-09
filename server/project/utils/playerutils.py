@@ -17,8 +17,12 @@ def players_to_json(players):
 
 
 def player_to_json(player):
-    return {'name': player.web_name, 'totalPoints': player.total_points, 'pointsPerGame': player.points_per_game, "id": player.id}
+    return {'name': player.player_data.web_name,
+            'totalPoints': player.player_data.total_points, 
+            'pointsPerGame': player.player_data.points_per_game, 
+            'id': player.player_data.id,
+            'teamName': player.team_data.name}
 
 
 def player_is_better(player):
-    return float(player.points_per_game) + float(player.total_points)
+    return float(player.player_data.points_per_game) + float(player.player_data.total_points)

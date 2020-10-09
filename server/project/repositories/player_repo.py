@@ -1,10 +1,15 @@
 from ..utils.playerutils import player_is_better, players_to_json, position_converter
-
+from .team_repo import get_player_team
 
 async def get_top_five_players(position, price, fpl):
     players = await get_players(position, price, fpl)
-    players.sort(key=player_is_better, reverse=True)
-    json_players = players_to_json(players)
+    team_players = []
+    for player in players:
+        player_team = await get_player_team(player.team, fpl)
+        team_players.append(TeamPlayer(player, player_team))
+    team_players.sort(key=player_is_better, reverse=True)
+    print(dir(team_players[0].team_data))
+    json_players = players_to_json(team_players)
     return json_players
 
 
@@ -18,3 +23,8 @@ async def get_players(position, price, fpl):
             matching_players.append(player)
 
     return matching_players
+
+class TeamPlayer:
+    def __init__(self, player_data, team_data):
+        self.team_data = team_data
+        self.player_data = player_data

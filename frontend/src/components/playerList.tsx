@@ -81,13 +81,15 @@ async function getPlayers(
       totalPoints: string;
       pointsPerGame: string;
       id: Int32Array;
+      teamName: string;
     }) => {
       players.push(
         new Player(
           playerJson.name,
           playerJson.totalPoints,
           playerJson.pointsPerGame,
-          playerJson.id
+          playerJson.id,
+          playerJson.teamName
         )
       );
     }
