@@ -1,0 +1,2 @@
+{'id': 43, 'code': 2128330, 'team_h': 9, 'team_h_score': None, 'team_a': 2, 'team_a_score': None, 'event': 5, 'finished': False, 'minutes': 0, 'provisional_start_time': False
+, 'kickoff_time': '2020-10-18T18:15:00Z', 'event_name': 'Gameweek 5', 'is_home': False, 'difficulty': 4}

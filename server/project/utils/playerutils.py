@@ -25,4 +25,6 @@ def player_to_json(player):
 
 
 def player_is_better(player):
-    return float(player.player_data.points_per_game) + float(player.player_data.total_points)
+    total = float(player.player_data.points_per_game) + float(player.player_data.total_points)
+    
+    return total
