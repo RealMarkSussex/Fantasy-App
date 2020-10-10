@@ -26,5 +26,21 @@ def player_to_json(player):
 
 def player_is_better(player):
     total = float(player.player_data.points_per_game) + float(player.player_data.total_points)
-    
     return total
+
+def get_form(player):
+    form = 0
+    history = []
+    print(type(player.player_summary.history))
+    divisor = 1
+    games_played_amount = player.player_summary.history.__len__()
+    if games_played_amount > 5:
+        history = player.player_summary.history[-5:]
+        divisor = 5
+    else:
+        history = player.player_summary.history
+        divisor = games_played_amount
+
+    for fixture in history:
+        form += fixture["total_points"]
+    print(form / divisor)

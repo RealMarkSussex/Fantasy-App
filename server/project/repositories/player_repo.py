@@ -1,4 +1,4 @@
-from ..utils.playerutils import player_is_better, players_to_json, position_converter
+from ..utils.playerutils import player_is_better, players_to_json, position_converter, get_form
 from .team_repo import get_player_team
 import json
 
@@ -11,6 +11,7 @@ async def get_top_five_players(position, price, fpl):
         player_summary = await get_player_summary(player.id, fpl)
         team_players.append(TeamPlayer(player, player_team, player_summary))
     team_players.sort(key=player_is_better, reverse=True)
+    get_form(team_players[0])
     json_players = players_to_json(team_players)
     return json_players
 
