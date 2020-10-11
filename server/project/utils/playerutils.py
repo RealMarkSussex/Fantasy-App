@@ -18,20 +18,21 @@ def players_to_json(players):
 
 def player_to_json(player):
     return {'name': player.player_data.web_name,
-            'totalPoints': player.player_data.total_points, 
-            'pointsPerGame': player.player_data.points_per_game, 
+            'form': round(get_form(player), 2),
+            'fixtureDifficulty': get_fixture_difficulty(player),
             'id': player.player_data.id,
-            'teamName': player.team_data.name}
+            'teamName': player.team_data.name,
+            'markScore': round(player_is_better(player), 2)}
 
 
 def player_is_better(player):
-    total = float(player.player_data.points_per_game) + float(player.player_data.total_points)
+    total = get_form(player) - get_fixture_difficulty(player)
     return total
+
 
 def get_form(player):
     form = 0
     history = []
-    print(type(player.player_summary.history))
     divisor = 1
     games_played_amount = player.player_summary.history.__len__()
     if games_played_amount > 5:
@@ -43,4 +44,17 @@ def get_form(player):
 
     for fixture in history:
         form += fixture["total_points"]
-    print(form / divisor)
+
+    if divisor == 0:
+        return 0
+
+    return form / divisor
+
+
+def get_fixture_difficulty(player):
+    total_fixture_difficulty = 0
+
+    for fixture in player.player_summary.fixtures[:5]:
+        total_fixture_difficulty += fixture["difficulty"]
+
+    return total_fixture_difficulty / 5

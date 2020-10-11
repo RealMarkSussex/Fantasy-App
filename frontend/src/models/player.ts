@@ -1,33 +1,26 @@
 class Player {
   name: String;
-  totalPoints: string;
-  pointsPerGame: string;
+  form: Float32Array;
+  fixtureDifficulty: Float32Array;
   id: Int32Array;
-  teamName: string
+  teamName: string;
+  markScore: Float32Array;
 
   constructor(
     name: string,
-    totalPoints: string,
-    pointsPerGame: string,
+    form: Float32Array,
+    fixtureDifficulty: Float32Array,
     id: Int32Array,
-    teamName: string
+    teamName: string,
+    markScore: Float32Array
   ) {
     this.name = name;
-    this.totalPoints = totalPoints;
-    this.pointsPerGame = pointsPerGame;
+    this.form = form;
+    this.fixtureDifficulty = fixtureDifficulty;
     this.id = id;
     this.teamName = teamName;
+    this.markScore = markScore
   }
-
-  public toString = (): string => {
-    return (
-      this.name +
-      ", total points: " +
-      this.totalPoints +
-      " , points per game: " +
-      this.pointsPerGame
-    );
-  };
 }
 
 export default Player;

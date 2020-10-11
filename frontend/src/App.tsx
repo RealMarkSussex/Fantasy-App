@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import PlayerList from './components/playerList'
+import PlayerList from './components/playerForm'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

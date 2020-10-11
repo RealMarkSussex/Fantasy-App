@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Player from "../models/player";
-import PlayerComponent from "./playerDetail";
 import { Button, Form, Container } from "react-bootstrap";
+import PlayerTable from "./playerTable"
 
 const PlayerList = () => {
   const [players, setPlayers] = useState(new Array<Player>());
@@ -44,9 +44,7 @@ const PlayerList = () => {
           Get da BEST Playas
         </Button>
       </Form>
-      {players.map((x) => (
-        <PlayerComponent player={x} key={x.id.toString()} />
-      ))}
+      <PlayerTable players={players} />
     </Container>
   );
 };
@@ -78,23 +76,24 @@ async function getPlayers(
   playersJson.forEach(
     (playerJson: {
       name: string;
-      totalPoints: string;
-      pointsPerGame: string;
+      form: Float32Array;
+      fixtureDifficulty: Float32Array;
       id: Int32Array;
       teamName: string;
+      markScore: Float32Array;
     }) => {
       players.push(
         new Player(
           playerJson.name,
-          playerJson.totalPoints,
-          playerJson.pointsPerGame,
+          playerJson.form,
+          playerJson.fixtureDifficulty,
           playerJson.id,
-          playerJson.teamName
+          playerJson.teamName,
+          playerJson.markScore
         )
       );
     }
   );
-  console.log(players);
   return players;
 }
 
