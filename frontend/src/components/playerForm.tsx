@@ -44,6 +44,7 @@ const PlayerList = () => {
           Get da BEST Playas
         </Button>
       </Form>
+      <br />
       <PlayerTable players={players} />
     </Container>
   );
