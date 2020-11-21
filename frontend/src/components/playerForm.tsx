@@ -12,7 +12,7 @@ const PlayerList = () => {
     <Container>
       <h1>
         Enter position and price to get the top 5 players with that price and
-        position
+        position!
       </h1>
       <Form
         onSubmit={(event) => handleSubmit(event, setPlayers, position, price)}
