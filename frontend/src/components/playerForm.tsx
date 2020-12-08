@@ -11,7 +11,7 @@ const PlayerList = () => {
   return (
     <Container>
       <h1>
-        Enter position + price to get the top 5 players with that price and
+        Enter position and price to get the top 5 players with that price and
         position!
       </h1>
       <Form
