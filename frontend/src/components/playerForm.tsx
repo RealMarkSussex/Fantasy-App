@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Player from "../models/player";
 import { Button, Form, Container } from "react-bootstrap";
-import PlayerTable from "./playerTable"
+import PlayerTable from "./playerTable";
 
 const PlayerList = () => {
   const [players, setPlayers] = useState(new Array<Player>());
@@ -11,7 +11,7 @@ const PlayerList = () => {
   return (
     <Container>
       <h1>
-        Enter position and price to get the top 5 players with that price and
+        Enter position + price to get the top 5 players with that price and
         position!
       </h1>
       <Form
